@@ -1,0 +1,51 @@
+<div>
+    <div class="border-2 w-fit mx-auto p-4 my-4">
+      <form [formGroup]="roleForm" class="w-96 mx-auto p-4">
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Role</mat-label>
+            <input matInput formControlName="role" />
+            <mat-error *ngIf="roleForm.get('role')?.hasError('required')">
+              role is required.
+            </mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="flex space-x-2">
+          <button
+            type="button"
+            class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            (click)="onSubmit()"
+          >
+            Save
+          </button>
+  
+          <button
+            type="button"
+            class="rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            (click)="onCancel()"
+          >
+            Cancel
+          </button>
+        </div>
+  
+        <mat-spinner *ngIf="loading" diameter="30"></mat-spinner>
+      </form>
+    </div>
+  
+    <!-- User List Table -->
+    <table mat-table [dataSource]="roleList" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>S.No</th>
+          <td mat-cell *matCellDef="let user; let i = index">{{ i+1 }}</td>
+        </ng-container>
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef>Role</th>
+        <td mat-cell *matCellDef="let user">{{ user.role }}</td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  
