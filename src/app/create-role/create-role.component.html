@@ -1,51 +1,83 @@
-<div>
-    <div class="border-2 w-fit mx-auto p-4 my-4">
-      <form [formGroup]="roleForm" class="w-96 mx-auto p-4">
-        <div>
-          <mat-form-field appearance="outline">
-            <mat-label>Role</mat-label>
-            <input matInput formControlName="role" />
-            <mat-error *ngIf="roleForm.get('role')?.hasError('required')">
-              role is required.
-            </mat-error>
-          </mat-form-field>
+<div class="flex pl-8" aria-label="Breadcrumb">
+  <ol role="list" class="flex items-center space-x-4">
+    <li>
+      <div>
+        <div (click)="routeTo('/')" class="text-gray-400 hover:text-gray-500">
+          <mat-icon>home</mat-icon>
         </div>
-  
-        <div class="flex space-x-2">
-          <button
-            type="button"
-            class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
-            (click)="onSubmit()"
-          >
-            Save
-          </button>
-  
-          <button
-            type="button"
-            class="rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
-            (click)="onCancel()"
-          >
-            Cancel
-          </button>
+      </div>
+    </li>
+    <li>
+      <div class="flex items-center">
+        <svg
+          class="h-5 w-5 flex-shrink-0 text-gray-400"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        <div class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
+          Roles
         </div>
-  
-        <mat-spinner *ngIf="loading" diameter="30"></mat-spinner>
-      </form>
-    </div>
-  
-    <!-- User List Table -->
+      </div>
+    </li>
+  </ol>
+</div>
+
+<div class="flex space-x-12 px-8">
+  <div class="border-2 p-4 my-4 form-card">
+    <form [formGroup]="roleForm" class="w-96 mx-auto p-4">
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Role</mat-label>
+          <input matInput formControlName="role" />
+          <mat-error *ngIf="roleForm.get('role')?.hasError('required')">
+            role is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="flex space-x-2">
+        <button
+          type="button"
+          class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
+          (click)="onSubmit()"
+        >
+          Save
+        </button>
+
+        <button
+          type="button"
+          class="rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
+          (click)="onCancel()"
+        >
+          Cancel
+        </button>
+      </div>
+
+      <mat-spinner *ngIf="loading" diameter="30"></mat-spinner>
+    </form>
+  </div>
+
+  <!-- User List Table -->
+  <div class="table-card pt-4">
     <table mat-table [dataSource]="roleList" class="mat-elevation-z8">
       <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef>S.No</th>
-          <td mat-cell *matCellDef="let user; let i = index">{{ i+1 }}</td>
-        </ng-container>
+        <th mat-header-cell *matHeaderCellDef>S.No</th>
+        <td mat-cell *matCellDef="let user; let i = index">{{ i + 1 }}</td>
+      </ng-container>
       <ng-container matColumnDef="role">
         <th mat-header-cell *matHeaderCellDef>Role</th>
-        <td mat-cell *matCellDef="let user">{{ user.role }}</td>
+        <td mat-cell *matCellDef="let user">{{ user.roleName }}</td>
       </ng-container>
-  
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </div>
-  
+</div>
