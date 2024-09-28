@@ -3,8 +3,11 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
 
 ## Development server
-
+Do `npm i` for installing dependencies
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+# Note
+`environment.ts` file has direct access to deployed link you can replace it with local port of backend while testing
 
 ## Code scaffolding
 
