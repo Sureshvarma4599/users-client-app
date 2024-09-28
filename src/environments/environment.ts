@@ -6,6 +6,7 @@ export const environment = {
         getUsersList:"/api/users/all",
         createRole:"/api/roles/create",
         getRolesList:"/api/roles/all",
-        assignRolesToUsers:"/api/users/assign/role"
+        assignRolesToUsers:"/api/users/assign/role",
+        swapMapping:"/api/users/swapMapping"
     }
   };

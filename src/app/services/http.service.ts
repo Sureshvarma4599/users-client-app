@@ -36,4 +36,7 @@ export class HttpService {
   assignRolesToUsers(body:any){
     return this.http.post(this.baseUrl+environment.routes.assignRolesToUsers,body)
   }
+  getMappingData(){
+    return this.http.get(this.baseUrl+environment.routes.swapMapping)
+  }
 }
