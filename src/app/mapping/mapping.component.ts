@@ -17,7 +17,6 @@ export class MappingComponent implements OnInit {
   userList:any[]=[];
   roleList:any[]=[];
   mappedRoles:any[]=[];
-
   selectedrolesToMap:any[]=[];
 
   constructor(private httpService:HttpService,private utilsService:UtilsService){
@@ -108,6 +107,9 @@ export class MappingComponent implements OnInit {
 
   updateRoletoUsers(roleId:string){
     const usersNeedToUpdate = this.selectedrolesToMap.filter((e)=>e?.roleId===roleId).map((x)=>x.userId);
+    if(usersNeedToUpdate.length===0){
+      return this.utilsService.openSnackBar("No User selected","close")
+    }
     console.log("usersNeedToUpdate",usersNeedToUpdate)
     const payload ={
       roleId:roleId,
